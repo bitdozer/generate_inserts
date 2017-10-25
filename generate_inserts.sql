@@ -37,7 +37,7 @@ BEGIN
 
 /***********************************************************************************************************
 Procedure:	sp_generate_inserts  (Build 22)
-		(Copyright © 2002 Narayana Vyas Kondreddi. All rights reserved.)
+		(Copyright Â© 2002 Narayana Vyas Kondreddi. All rights reserved.)
 
 Purpose:	To generate INSERT statements from existing data.
 		These INSERTS can be executed to regenerate the data at some other location.
@@ -473,8 +473,9 @@ GO
 EXEC sys.sp_MS_marksystemobject sp_generate_inserts
 GO
 
-PRINT 'Granting EXECUTE permission on sp_generate_inserts to all users'
-GRANT EXEC ON sp_generate_inserts TO public
+-- Not sure why you would want to do this...
+--PRINT 'Granting EXECUTE permission on sp_generate_inserts to all users'
+--GRANT EXEC ON sp_generate_inserts TO public
 
 SET NOCOUNT OFF
 GO
