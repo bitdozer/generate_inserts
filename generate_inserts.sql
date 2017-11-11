@@ -300,7 +300,7 @@ WHILE @Column_ID IS NOT NULL
 		CASE
 			WHEN @Data_Type IN ('char','varchar','nchar','nvarchar')
 				THEN
-					'COALESCE('''''''' + REPLACE(RTRIM(' + @Column_Name + '),'''''''','''''''''''')+'''''''',''NULL'')'
+					'COALESCE('''''''' + REPLACE(REPLACE(REPLACE(REPLACE(RTRIM(' + @Column_Name + '),'''''''',''''''''''''),CHAR(10),''''''+CHAR(10)+''''''),CHAR(13),''''''+CHAR(13)+''''''),CHAR(9),''''''+CHAR(9)+'''''')+'''''''',''NULL'')'
 			WHEN @Data_Type IN ('datetime','smalldatetime')
 				THEN
 					'COALESCE('''''''' + RTRIM(CONVERT(char,' + @Column_Name + ',109) COLLATE DATABASE_DEFAULT)+'''''''',''NULL'')'
@@ -309,7 +309,7 @@ WHILE @Column_ID IS NOT NULL
 					'COALESCE('''''''' + REPLACE(CONVERT(varchar(128),RTRIM(' + @Column_Name + ') COLLATE DATABASE_DEFAULT),'''''''','''''''''''')+'''''''',''NULL'')'
 			WHEN @Data_Type IN ('text','ntext')
 				THEN
-					'COALESCE('''''''' + REPLACE(CONVERT(varchar(max),' + @Column_Name + ') COLLATE DATABASE_DEFAULT,'''''''','''''''''''')+'''''''',''NULL'')'
+					'COALESCE('''''''' + REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(varchar(max),' + @Column_Name + ') COLLATE DATABASE_DEFAULT,'''''''',''''''''''''),CHAR(10),''''''+CHAR(10)+''''''),CHAR(13),''''''+CHAR(13)+''''''),CHAR(9),''''''+CHAR(9)+'''''')+'''''''',''NULL'')'
 			WHEN @Data_Type IN ('binary','varbinary')
 				THEN
 					'COALESCE(RTRIM(CONVERT(char,' + 'CONVERT(int,' + @Column_Name + ') COLLATE DATABASE_DEFAULT) COLLATE DATABASE_DEFAULT),''NULL'')'
